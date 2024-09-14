@@ -6,7 +6,6 @@ import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DyeColor;
@@ -35,6 +34,5 @@ public class DyeItemMixin {
 			}
 			cir.setReturnValue(ActionResult.success(user.getWorld().isClient));
 		}
-		cir.setReturnValue(ActionResult.PASS);
 	}
 }
