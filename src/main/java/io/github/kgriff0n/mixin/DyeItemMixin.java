@@ -25,14 +25,13 @@ public class DyeItemMixin {
 	@Final @Shadow private DyeColor color;
 	@Inject(at = @At("HEAD"), method = "useOnEntity", cancellable = true)
 	private void useOnShulker(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-		ShulkerEntity shulkerEntity;
-		if (Config.canDyeMob && entity instanceof ShulkerEntity && (shulkerEntity = (ShulkerEntity) entity).isAlive() && ((ShulkerEntity) entity).getColor() != this.color) {
+		if (Config.canDyeMob && entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive() && shulkerEntity.getColor() != this.color) {
 			user.playSound(SoundEvents.ITEM_DYE_USE);
 			if (!user.getWorld().isClient) {
 				setColor(shulkerEntity, this.color.getId());
 				stack.decrement(1);
 			}
-			cir.setReturnValue(ActionResult.success(user.getWorld().isClient));
+			cir.setReturnValue(ActionResult.SUCCESS_SERVER);
 		}
 	}
 }

@@ -3,7 +3,6 @@
   "package": "io.github.kgriff0n.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BucketItemMixin",
     "DyeItemMixin"
   ],
   "injectors": {
