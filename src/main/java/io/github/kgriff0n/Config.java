@@ -38,10 +38,7 @@ public class Config {
     public static void writeDefaultConfig() {
 
         try (Writer writer = new FileWriter(properties)) {
-            writer.write("# Dyeable Shulkers configuration file\n\n");
-            writer.write("# Don't edit the following line\n");
-            writer.write("version=v1.1.0\n\n");
-
+            writer.write("# Dyeable Shulkers configuration file\n");
             writer.write("can_dye_block=true\n");
             writer.write("can_dye_mob=true\n");
             writer.write("can_rename_block=true\n");
@@ -54,10 +51,7 @@ public class Config {
 
     public static void save() {
         try (Writer writer = new FileWriter(properties)) {
-            writer.write("# Dyeable Shulkers configuration file\n\n");
-            writer.write("# Don't edit the following line\n");
-            writer.write("version=v1.2.2\n\n");
-
+            writer.write("# Dyeable Shulkers configuration file\n");
             writer.write("can_dye_block=" + canDyeBlock + "\n");
             writer.write("can_dye_mob=" + canDyeMob + "\n");
             writer.write("can_rename_block=" + canRenameBlock + "\n");
