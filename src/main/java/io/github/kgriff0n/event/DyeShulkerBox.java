@@ -67,9 +67,9 @@ public class DyeShulkerBox implements UseBlockCallback {
                     player.getMainHandStack().decrement(1);
                 }
 
-                return ActionResult.SUCCESS_SERVER;
+                return ActionResult.SUCCESS;
 
-            } else if (Config.canDyeBlock && item == Items.BRUSH && block.getDefaultState() != Blocks.SHULKER_BOX.getDefaultState()) {
+            } else if (Config.canCleanShulker && item == Items.BRUSH && block.getDefaultState() != Blocks.SHULKER_BOX.getDefaultState()) {
                 ShulkerBoxBlockEntity oldShulkerBox = (ShulkerBoxBlockEntity) world.getBlockEntity(pos);
                 NbtCompound nbt = oldShulkerBox.createNbt(world.getRegistryManager());
 
@@ -81,7 +81,7 @@ public class DyeShulkerBox implements UseBlockCallback {
                 ShulkerBoxBlockEntity newShulkerBox = (ShulkerBoxBlockEntity) world.getBlockEntity(pos);
                 newShulkerBox.read(nbt, world.getRegistryManager());
 
-                return ActionResult.SUCCESS_SERVER;
+                return ActionResult.SUCCESS;
             } else if (Config.canRenameBlock && item == Items.NAME_TAG) {
                 if (itemStack.getComponents().contains(DataComponentTypes.CUSTOM_NAME)) {
                     ShulkerBoxBlockEntity shulkerBox = (ShulkerBoxBlockEntity) world.getBlockEntity(pos);
@@ -92,7 +92,7 @@ public class DyeShulkerBox implements UseBlockCallback {
                     if (!player.isCreative()) {
                         player.getMainHandStack().decrement(1);
                     }
-                    return ActionResult.SUCCESS_SERVER;
+                    return ActionResult.SUCCESS;
                 }
             }
         }

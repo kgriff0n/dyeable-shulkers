@@ -28,6 +28,9 @@ public class ConfigCommand {
                     .then(literal("canRenameBlock")
                             .then(argument("boolean", BoolArgumentType.bool())
                                     .executes(context -> setRenameBlock(context.getSource(), BoolArgumentType.getBool(context, "boolean")))))
+                    .then(literal("canCleanShulker")
+                            .then(argument("boolean", BoolArgumentType.bool())
+                                    .executes(context -> setCleanShulker(context.getSource(), BoolArgumentType.getBool(context, "boolean")))))
             );
         });
     }
@@ -60,6 +63,14 @@ public class ConfigCommand {
         }
         player.sendMessage(canRenameBlockText);
 
+        MutableText canCleanShulkerText = Text.literal("canCleanShulker=").formatted(Formatting.GRAY);
+        if (Config.canCleanShulker) {
+            canCleanShulkerText.append("§2true");
+        } else {
+            canCleanShulkerText.append("§4false");
+        }
+        player.sendMessage(canCleanShulkerText);
+
         return Command.SINGLE_SUCCESS;
     }
 
@@ -77,6 +88,12 @@ public class ConfigCommand {
 
     private static int setRenameBlock(ServerCommandSource source, boolean b) {
         Config.canRenameBlock = b;
+        display(source);
+        return Command.SINGLE_SUCCESS;
+    }
+
+    private static int setCleanShulker(ServerCommandSource source, boolean b) {
+        Config.canCleanShulker = b;
         display(source);
         return Command.SINGLE_SUCCESS;
     }

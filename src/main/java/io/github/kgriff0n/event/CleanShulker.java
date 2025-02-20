@@ -17,13 +17,13 @@ import static io.github.kgriff0n.DyeableShulkers.setColor;
 public class CleanShulker implements UseEntityCallback {
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult hitResult) {
-        if (Config.canDyeMob && entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive() && shulkerEntity.getColor() != null && hand == Hand.MAIN_HAND && player.getMainHandStack().getItem() == Items.BRUSH) {
+        if (Config.canCleanShulker && entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive() && shulkerEntity.getColor() != null && hand == Hand.MAIN_HAND && player.getMainHandStack().getItem() == Items.BRUSH) {
             if (!player.isCreative()) {
                 player.getMainHandStack().damage(1, player);
             }
             setColor(shulkerEntity, 16);
 
-            return ActionResult.SUCCESS_SERVER;
+            return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }

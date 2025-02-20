@@ -27,8 +27,8 @@ public class DyeItemMixin {
 	private void useOnShulker(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
 		if (Config.canDyeMob && entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive() && shulkerEntity.getColor() != this.color) {
 			user.playSound(SoundEvents.ITEM_DYE_USE);
-			if (!user.getWorld().isClient) {
-				setColor(shulkerEntity, this.color.getId());
+			setColor(shulkerEntity, this.color.getId());
+			if (!user.isCreative()) {
 				stack.decrement(1);
 			}
 			cir.setReturnValue(ActionResult.SUCCESS_SERVER);
