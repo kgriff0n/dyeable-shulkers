@@ -54,12 +54,12 @@ public class DyeShulkerBox implements UseBlockCallback {
         ItemStack itemStack = player.getMainHandStack();
         Item item = itemStack.getItem();
         if (block instanceof ShulkerBoxBlock && hand == Hand.MAIN_HAND) {
-            if (Config.canDyeBlock && item instanceof DyeItem dye && SHULKER_MAP.get((dye).getColor().getId()) != block.getDefaultState()) {
+            if (Config.canDyeBlock && item instanceof DyeItem dye && SHULKER_MAP.get((dye).getColor().getIndex()) != block.getDefaultState()) {
                 ShulkerBoxBlockEntity oldShulkerBox = (ShulkerBoxBlockEntity) world.getBlockEntity(pos);
                 NbtCompound nbt = oldShulkerBox.createNbt(world.getRegistryManager());
                 DyeColor color = ((DyeItem) item).getColor();
 
-                world.setBlockState(pos, SHULKER_MAP.get(color.getId()).with(Properties.FACING, blockState.get(Properties.FACING)));
+                world.setBlockState(pos, SHULKER_MAP.get(color.getIndex()).with(Properties.FACING, blockState.get(Properties.FACING)));
                 ShulkerBoxBlockEntity newShulkerBox = (ShulkerBoxBlockEntity) world.getBlockEntity(pos);
                 newShulkerBox.read(nbt, world.getRegistryManager());
 

@@ -23,11 +23,12 @@ import static io.github.kgriff0n.DyeableShulkers.setColor;
 @Mixin(DyeItem.class)
 public class DyeItemMixin {
 	@Final @Shadow private DyeColor color;
+
 	@Inject(at = @At("HEAD"), method = "useOnEntity", cancellable = true)
 	private void useOnShulker(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
 		if (Config.canDyeMob && entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive() && shulkerEntity.getColor() != this.color) {
 			user.playSound(SoundEvents.ITEM_DYE_USE);
-			setColor(shulkerEntity, this.color.getId());
+			setColor(shulkerEntity, this.color.getIndex());
 			if (!user.isCreative()) {
 				stack.decrement(1);
 			}
